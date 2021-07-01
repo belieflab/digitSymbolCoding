@@ -3,7 +3,7 @@
 // jsPsych API for NDA variables
 
 // function to store subject number for turk.js on submit
-let workerId;
+// let workerId;
 
 // declare handedness, assoc vars
 let handedness;
@@ -152,6 +152,6 @@ function submitIntake() {
     } else {
         // alert("your subjectid is " + subjectID);
         workerId = parseInt(subjectID);
-        validateIntake();
+        // validateIntake();
     }
 }

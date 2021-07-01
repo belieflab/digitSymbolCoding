@@ -29,6 +29,7 @@
  - all standard HTML5 <array prototype methods at https://developer.mozilla.org/en-
  US/docs/Web/JavaScript/Reference/Global_Objects/Array>
   */ 
+
  function getID(
     e
 ) {
@@ -180,7 +181,10 @@ function tmbSubmitToFile(e, t, n) {
 
 function convertToCSV (json) {
   
-    var keys = [];
+    var keys = ['subjectkey','src_subject_id','site','interview_date','interview_age','sex','phenotype','handedness'];
+    // add NDA required variables
+    keys.push()
+
     var values = [];
     function getKeys(data, k = '') {
       for (var i in data) {
@@ -209,7 +213,15 @@ function convertToCSV (json) {
     json.forEach(x=>{
        values=[];
        getValues(x);
+       value+=GUID+',';
+       value+=subjectID+',';
+       value+=siteNumber+',';
+       value+=today+',';
+       value+=ageAtAssessment+',';
+       value+=sexAtBirth+',';
+       value+=groupStatus+',';
        value+=values.join(",")+"\r\n";
+
     })
     
     var csv = keys.join(",")+"\r\n"+value;

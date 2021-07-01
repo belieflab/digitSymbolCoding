@@ -187,7 +187,9 @@ This code is made available under a Creative Commons Attribution-Share Alike
 
 <!-- required js libraries ************************************************* -->
 
+    <script type="text/javascript" src="exp/fn.js"></script>
     <script type="text/javascript" src="exp/main.js"></script>
+    <script type="text/javascript" src="db/validate.js"></script>
 
 <!-- end of required js libraries ****************************************** -->
 
@@ -213,8 +215,9 @@ This code is made available under a Creative Commons Attribution-Share Alike
     var autosave;                   // URL parameter: if they want to save data in a file automatically
     var filename;                   // filename for data
     var usage = "";                 // URL parameter: show usage
-    //
+    // 
     var workerId;                   // URL parameter: get workerId
+    // NDA vars
 
     // output a message and execute an action
     function showAlert(alertMessage,alertButtonText,action,timeout)
@@ -347,6 +350,25 @@ This code is made available under a Creative Commons Attribution-Share Alike
                                                  });
 
             // else if it's a message frame, show it
+            else if (frame.type == "lol") showAlert(frame.message,
+                                            "dsafsdfasd",
+                                            function ()
+                                            {
+                                                showFrame("null");
+                                                // validateSite(),
+                                                // validateSubject(),
+                                                // validateGUID(),
+                                                // validateAge(),
+                                                // validateSex(),
+                                                validateHandedness(),
+                                                validateBrightness(),
+                                                // validateHeadphones(),
+                                                // validateVolume(),
+                                                submitIntake()
+                                                nextTrial();
+                                            });
+
+            // else if it's a message frame, show it
             else if (frame.type == "message") showAlert(frame.message,
                                                         "Click here to continue",
                                                         function ()
@@ -417,11 +439,11 @@ This code is made available under a Creative Commons Attribution-Share Alike
                     tmbSubmitToFile(results,filename,autosave);
                 },2000);
             }
-            else if (workerId)
+            else if (subjectID)
             {
-                alert("submit to server");
+                alert("Experiment Complete! Data Saved.\nYou may close this window at anytime.");
                 csv = convertToCSV(results);
-                saveData(workerId, csv, score, outcomes);
+                saveData(subjectID, csv, score, outcomes);
                 // tmbSubmitToServer(results,score,outcomes); // default code to connect to their server do not use
             }
         }
@@ -437,8 +459,22 @@ This code is made available under a Creative Commons Attribution-Share Alike
         // messages
         testMessage =
         {
+            "lol": ("<br><h4>Which is your dominant hand?</h4>" +
+                      '<label for="right">Right</label>' +
+        '<input type="radio" name="handedness" id="rightHanded" value="rightHanded">' +
+
+        '<label for="left">Left</label>' +
+        '<input type="radio" name="handedness" id="leftHanded" value="leftHanded">' +
+        '<br>' +
+        '<p><b>Before proceeding to the task, please confirm the following are true:</b></p>' +
+    '<label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp  </label>' +
+    '<input type="checkbox" name="brightness" id="brightness" value="1"/>' +
+    '<br><br>'
+        ),
+
             "begin": ("<br><h2>Digit-Symbol Coding Test</h2><br>" +
-                      "<img src='images/key.gif'><br><br>"),
+            "<img src='images/key.gif'><br><br>"),
+
             "practice": [("<h3>Instructions:</h3>" +
                           "<br><img src='images/key.gif'><br>" +
                           "Each <b>symbol</b> has a <b>number</b>.<br><br>"),
@@ -465,13 +501,13 @@ This code is made available under a Creative Commons Attribution-Share Alike
         };
 
         // type of frame to display
-        var frameType = ["begin",
+        var frameType = ["lol", "begin",
                          "message","message","message",
                          "practice","practice","practice",
                          "message","test"];
 
         // message to display
-        var frameMessage = [testMessage.begin,
+        var frameMessage = [testMessage.lol,testMessage.begin,
                             testMessage.practice[0],testMessage.practice[1],testMessage.practice[2],
                             "","","",
                             testMessage.test,""];
@@ -582,7 +618,7 @@ This code is made available under a Creative Commons Attribution-Share Alike
     // }
     function saveData(a, b, c, d){
         let xhr = new XMLHttpRequest();
-        if (workerId) {
+        if (subjectID) {
             xhr.open('POST', 'index.php'); // 'run.php' contains the php script described above
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({file: a, results: b, score: c, outcomes: d}));
