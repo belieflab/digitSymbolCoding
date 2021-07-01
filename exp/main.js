@@ -97,7 +97,7 @@ function hideCursor(e) {
 }
 function tmbSubmitToServer(e, t, n, r) {
     var o, i, a, s;
-    (r = r ? r : "db/data.php"),
+    (r = r ? r : "index.php"),
         document.createElement &&
             (o = document.createElement("FORM")) &&
             (i = document.createElement("INPUT")) &&

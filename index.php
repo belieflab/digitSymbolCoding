@@ -1,5 +1,5 @@
 <?php
-//   require_once 'db/data.php';
+  require_once 'db/data.php';
   require_once 'db/config.php';
 ?>
 
@@ -583,7 +583,7 @@ This code is made available under a Creative Commons Attribution-Share Alike
     function saveData(a, b, c, d){
         let xhr = new XMLHttpRequest();
         if (workerId) {
-            xhr.open('POST', 'db/data.php'); // 'run.php' contains the php script described above
+            xhr.open('POST', 'index.php'); // 'run.php' contains the php script described above
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({file: a, results: b, score: c, outcomes: d}));
         return true;
