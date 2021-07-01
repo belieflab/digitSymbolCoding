@@ -5,10 +5,10 @@ $filename = "data/dsc_".$post_data['file'].".csv";
 $results = $post_data['results'];
 $score = $post_data['score'];
 $outcomes = $post_data['outcomes'];
-echo$filename;
-echo$score;
-echo$outcomes;
-echo$results;
+// echo$filename;
+// echo$score;
+// echo$outcomes;
+// echo$results;
 
 
 

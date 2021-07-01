@@ -1,3 +1,8 @@
+<?php
+//   require_once 'db/data.php';
+  require_once 'db/config.php';
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -182,7 +187,7 @@ This code is made available under a Creative Commons Attribution-Share Alike
 
 <!-- required js libraries ************************************************* -->
 
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="exp/main.js"></script>
 
 <!-- end of required js libraries ****************************************** -->
 
@@ -578,7 +583,7 @@ This code is made available under a Creative Commons Attribution-Share Alike
     function saveData(a, b, c, d){
         let xhr = new XMLHttpRequest();
         if (workerId) {
-            xhr.open('POST', 'run.php'); // 'run.php' contains the php script described above
+            xhr.open('POST', 'db/data.php'); // 'run.php' contains the php script described above
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({file: a, results: b, score: c, outcomes: d}));
         return true;
@@ -596,7 +601,7 @@ This code is made available under a Creative Commons Attribution-Share Alike
 
 <!-- HTML content ********************************************************** -->
 
-<body>
+<body id='unload' onbeforeunload="return areYouSure()" style="background-color: white;">
     <!-- this DIV is used to show a message and continue the test sequence-->
     <div id="alertBox" class="inst" style="display: none">
         <span class="instSpan" id="alertText">This is a placeholder.</span>
@@ -626,5 +631,36 @@ This code is made available under a Creative Commons Attribution-Share Alike
     instructions</a> how to enable JavaScript in your web browser.
     </noscript>
 </body>
+
+<footer>
+<script type="text/javascript">
+    // declare NDA required variables
+    let GUID;
+    let subjectID;
+    let sexAtBirth;
+    let siteNumber;
+    let ageAtAssessment;
+    let groupStatus;
+    let feedbackLink;
+
+    if (db_connection === false) {
+    GUID = "";
+    subjectID = "";
+    sexAtBirth = "";
+    siteNumber = "";
+    ageAtAssessment = "";
+    groupStatus = "";
+    feedbackLink = "";
+    } else if (db_connection === true) {
+    GUID = "<?php echo $subjectKey?>";
+    subjectID = "<?php echo $consortId?>";
+    sexAtBirth = "<?php echo $sexAtBirth?>";
+    siteNumber = "<?php echo $institutionAlias?>";
+    ageAtAssessment = "<?php echo $ageInMonths?>";
+    groupStatus = "<?php echo $groupStatus?>";
+    feedbackLink = "https://belieflab.yale.edu/omnibus/eCRFs/feedback/tasks/dsc.php?candidateId=<?php echo $candidateId?>&studyId=<?php echo $studyId?>";
+    }
+</script>
+</footer>
 
 </html>
