@@ -517,10 +517,10 @@ This code is made available under a Creative Commons Attribution-Share Alike
                             testMessage.test,""];
 
         // symbol to display
-        var frameSymbol = [null,0,0,0,0,1,3,2,0,4];
+        var frameSymbol = [0,0,0,0,0,1,3,2,0,4];
 
         // digit to display
-        var frameDigit = [null,0,0,0,0,1,3,2,0,1];
+        var frameDigit = [0,0,0,0,0,1,3,2,0,1];
 
         // push all components into the frames chain
         for(var i=0; i<frameType.length; i++)
