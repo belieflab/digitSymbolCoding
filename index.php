@@ -351,7 +351,7 @@ This code is made available under a Creative Commons Attribution-Share Alike
 
             // else if it's a message frame, show it
             else if (frame.type == "lol") showAlert(frame.message,
-                                            "dsafsdfasd",
+                                            "Submit and Begin Task",
                                             function ()
                                             {
                                                 showFrame("null");
