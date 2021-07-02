@@ -181,7 +181,7 @@ function tmbSubmitToFile(e, t, n) {
 
 function convertToCSV (json) {
   
-    var keys = ['subjectkey','src_subject_id','site','interview_date','interview_age','sex','phenotype','handedness'];
+    var keys = ['subjectkey','src_subject_id','site','interview_date','interview_age','sex','phenotype','handedness','index'];
     // add NDA required variables
     keys.push()
 
@@ -210,6 +210,7 @@ function convertToCSV (json) {
 
     getKeys(json[0])
     var value="";
+    var index = -2; // to accomodate for practice trials
     json.forEach(x=>{
        values=[];
        getValues(x);
@@ -220,8 +221,10 @@ function convertToCSV (json) {
        value+=ageAtAssessment+',';
        value+=sexAtBirth+',';
        value+=groupStatus+',';
+       value+=handedness+',';
+       value+=index+',';
        value+=values.join(",")+"\r\n";
-
+    index++;
     })
     
     var csv = keys.join(",")+"\r\n"+value;

@@ -1,0 +1,15 @@
+
+/* hide cursor */
+.hideCursor {
+  cursor: none;
+  }
+
+  /* disable clicks */
+  .noClick {
+    pointer-events: none;
+  }
+
+  /* show cursor */
+.showCursor {
+  cursor: default;
+  }

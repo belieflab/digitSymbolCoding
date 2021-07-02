@@ -92,6 +92,8 @@ This code is made available under a Creative Commons Attribution-Share Alike
 
 <!-- css Style declarations ************************************************ -->
 
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
     <style type="text/css">
 
         body
@@ -343,7 +345,7 @@ This code is made available under a Creative Commons Attribution-Share Alike
         {
             // check if it's the startup frame
             if (frame.type == "begin") showAlert(frame.message,
-                                                 "Click here for instructions",
+                                                 "Instructions",
                                                  function ()
                                                  {
                                                     nextTrial();
@@ -370,7 +372,7 @@ This code is made available under a Creative Commons Attribution-Share Alike
 
             // else if it's a message frame, show it
             else if (frame.type == "message") showAlert(frame.message,
-                                                        "Click here to continue",
+                                                        "Continue",
                                                         function ()
                                                         {
                                                             showFrame("null");
@@ -463,11 +465,11 @@ This code is made available under a Creative Commons Attribution-Share Alike
                       '<label for="right">Right</label>' +
         '<input type="radio" name="handedness" id="rightHanded" value="rightHanded">' +
 
-        '<label for="left">Left</label>' +
+        '<label for="left">&nbsp&nbspLeft</label>' +
         '<input type="radio" name="handedness" id="leftHanded" value="leftHanded">' +
         '<br>' +
         '<p><b>Before proceeding to the task, please confirm the following are true:</b></p>' +
-    '<label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp  </label>' +
+    '<label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp  </label>' + 
     '<input type="checkbox" name="brightness" id="brightness" value="1"/>' +
     '<br><br>'
         ),
@@ -475,7 +477,8 @@ This code is made available under a Creative Commons Attribution-Share Alike
             "begin": ("<br><h2>Digit-Symbol Coding Test</h2><br>" +
             "<img src='images/key.gif'><br><br>"),
 
-            "practice": [("<h3>Instructions:</h3>" +
+            "practice": [("<br>" +
+                            "<h3>Instructions:</h3>" +
                           "<br><img src='images/key.gif'><br>" +
                           "Each <b>symbol</b> has a <b>number</b>.<br><br>"),
                          ("<br><img src='images/1.gif'><br>" +
@@ -487,9 +490,10 @@ This code is made available under a Creative Commons Attribution-Share Alike
                           (hasTouch ? "tap the <b>button</b> with its number"
                                     : "press its number on the <b>keyboard</b>") +
                           " (here it is 1).<br><br>"),
-                         ("<h3>Instructions:</h3>" +
-                          "<br><img src='images/2.gif'><br>" +
-                          "<img src='images/keySmall.gif'><br>" +
+                         (   "<br>" +
+                             "<h3>Instructions:</h3>" +
+                        //   "<br><img src='images/2.gif'><br>" +
+                        //   "<img src='images/key.gif'><br>" +
                           "Let's practice a few symbols.<br><br>")],
             "test": ("<br>Excellent!<br>" +
                      "You have completed the practice.<br>" +
@@ -513,10 +517,10 @@ This code is made available under a Creative Commons Attribution-Share Alike
                             testMessage.test,""];
 
         // symbol to display
-        var frameSymbol = [0,0,0,0,1,3,2,0,4];
+        var frameSymbol = [null,0,0,0,0,1,3,2,0,4];
 
         // digit to display
-        var frameDigit = [0,0,0,0,1,3,2,0,1];
+        var frameDigit = [null,0,0,0,0,1,3,2,0,1];
 
         // push all components into the frames chain
         for(var i=0; i<frameType.length; i++)
