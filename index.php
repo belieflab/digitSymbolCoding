@@ -357,11 +357,11 @@ This code is made available under a Creative Commons Attribution-Share Alike
                                             function ()
                                             {
                                                 showFrame("null");
-                                                // validateSite(),
-                                                // validateSubject(),
+                                                validateSite(),
+                                                validateSubject(),
                                                 // validateGUID(),
-                                                // validateAge(),
-                                                // validateSex(),
+                                                validateAge(),
+                                                validateSex(),
                                                 validateHandedness(),
                                                 validateBrightness(),
                                                 // validateHeadphones(),
@@ -456,23 +456,50 @@ This code is made available under a Creative Commons Attribution-Share Alike
 
     function setFrameSequence()
     {
-        var testMessage;
+        let testMessage;
 
         // messages
-        testMessage =
-        {
-            "lol": ("<br><h4>Which is your dominant hand?</h4>" +
-                      '<label for="right">Right</label>' +
-        '<input type="radio" name="handedness" id="rightHanded" value="rightHanded">' +
+        testMessage = {
+  "lol": (
+    "<h1 style='text-align:center;'>Participant Intake</h1>" +
+    "<p style='color:black'>Please fill out the following information before beginning the task:</p>" +
+    "<form method='post'>" +
+    "<p style='color:black'><b>Research Site:</b></p>" +
+    "<select name='facility' id='siteid'>" +
+    // "<option value='none'>---</option>" +
+    // "<option value='Maryland'>UMBC</option>" +
+    "<option value='Northwestern'>NU</option>" +
+    // "<option value='Temple'>Temple</option>" +
+    // "<option value='Georgia'>UGA</option>" +
+    // "<option value='Yale'>Yale</option>" +
+    // "<option value='Emory'>Emory</option>" +
+    "</select>" +
+    "<label for='facility'></label>" +
+    "<p style='color:black'><b>Subject ID:</b></p>" +
+    "<input required id='subjectid' type='text' name='subjectid' minlength='5' maxlength='5'>" +
+    "<p style='color:black'><b>Date of Birth:</b></p>" +
+    "<input required id='dob' type='date'>" +
+    "<p style='color:black'><strong>Sex at Birth:</strong></p>" +
+    "<label for='male'>Male</label>" +
+    "<input type='radio' id='male' name='sex' value='male' onclick='validateSex(this.value)'>" +
+    "<br>"+
+    "<label for='female'>Female</label>" +
+    "<input type='radio' id='female' name='sex' value='female' onclick='validateSex(this.value)'>" +
+    "<p style='color:black'><b>Dominant Hand:</b></p>" +
+    "<label for='right'>Right</label>" +
+    "<input type='radio' name='handedness' id='rightHanded' value='rightHanded'>" +
+    "<br>"+
+    "<label for='left'>Left</label>" +
+    "<input type='radio' name='handedness' id='leftHanded' value='leftHanded'>" +
+    "<p style='color:black'><b>Before proceeding to the task, please confirm the following are true:</b></p>" +
+    "<label class='container'>Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp" +
+    "<input type='checkbox' name='brightness' id='brightness' value='1'>" +
+    "</label>" +
+    "</form>" +
+    "<br>"+
+    "<br>"
+  ),
 
-        '<label for="left">&nbsp&nbspLeft</label>' +
-        '<input type="radio" name="handedness" id="leftHanded" value="leftHanded">' +
-        '<br>' +
-        '<p><b>Before proceeding to the task, please confirm the following are true:</b></p>' +
-    '<label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp  </label>' + 
-    '<input type="checkbox" name="brightness" id="brightness" value="1"/>' +
-    '<br><br>'
-        ),
 
             "begin": ("<br><h2>Digit-Symbol Coding Test</h2><br>" +
             "<img src='images/key.gif'><br><br>"),
